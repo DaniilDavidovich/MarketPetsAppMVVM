@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Сердечко1.svg",
+      "filename" : "Сердечко2.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Сердечко1 1.svg",
+      "filename" : "Сердечко2 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Сердечко1 2.svg",
+      "filename" : "Сердечко2 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
