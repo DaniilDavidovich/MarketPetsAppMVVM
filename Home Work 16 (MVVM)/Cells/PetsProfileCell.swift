@@ -26,7 +26,9 @@ class PetsProfileCell: UICollectionViewCell {
         let imageview = UIImageView()
         let image = UIImage(named: "dogImage")
         imageview.image = image
-        imageview.contentMode = .scaleAspectFit
+        imageview.contentMode = .scaleAspectFill
+        imageview.clipsToBounds = true
+        imageview.layer.cornerRadius = 45
         imageview.translatesAutoresizingMaskIntoConstraints = false
         return imageview
     }()

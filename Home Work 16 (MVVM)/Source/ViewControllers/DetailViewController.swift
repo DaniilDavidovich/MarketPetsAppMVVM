@@ -8,22 +8,45 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    //MARK: - Outlets
+    
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "dogImage")
+        imageView.image = image
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        setupView()
+        setupHierarhy()
+        setupLayout()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Setups
+    private func setupView() {
+        view.backgroundColor = .white
     }
-    */
+    
+    private func setupHierarhy() {
+        view.addSubview(imageView)
+        
+    }
+    
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant:  500)
+        ])
+    }
 
 }
