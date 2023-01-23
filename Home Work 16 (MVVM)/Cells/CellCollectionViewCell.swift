@@ -22,4 +22,6 @@ class CollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("Error in Cell")
     }
+    
+    
 }

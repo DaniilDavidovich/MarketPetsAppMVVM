@@ -66,10 +66,10 @@ class ViewController: UIViewController {
                                                       heightDimension: .fractionalHeight(1))
                 
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
+                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 4),
-                                                       heightDimension: .fractionalWidth(1 / 1 * 0.25))
+                                                       heightDimension: .fractionalWidth(1 / 1 * 0.4))
                 
                 let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: layoutItem, count: 1)
                 layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
                 
                 let layoutSectionHeaderSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .estimated(80)
+                    heightDimension: .estimated(86)
                 )
                 
                 let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
@@ -101,10 +101,10 @@ class ViewController: UIViewController {
                                                       heightDimension: .fractionalHeight(1))
                 
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
+                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 20, trailing: 0)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .absolute(44))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.97),
+                                                       heightDimension: .absolute(154))
                 
                 let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
                 
