@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PetsProfile: UICollectionViewCell {
+class PetsProfileCell: UICollectionViewCell {
     
     static var identifier = "PetsProfileCell"
     

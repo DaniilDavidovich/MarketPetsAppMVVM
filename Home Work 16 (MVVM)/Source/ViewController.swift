@@ -16,10 +16,11 @@ class ViewController: UIViewController {
         
         collection.translatesAutoresizingMaskIntoConstraints = false
         // MARK: Cells
-        collection.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
-        collection.register(PetsProfile.self, forCellWithReuseIdentifier: PetsProfile.identifier)
+        collection.register(PetsGroupsCell.self, forCellWithReuseIdentifier: PetsGroupsCell.identifier)
+        collection.register(PetsProfileCell.self, forCellWithReuseIdentifier: PetsProfileCell.identifier)
+        collection.register(TextFieldCell.self, forCellWithReuseIdentifier: TextFieldCell.identifier)
         
-        
+        collection.backgroundColor = .systemGray6
         collection.dataSource = self
         collection.delegate = self
         return collection
@@ -46,7 +47,6 @@ class ViewController: UIViewController {
     //MARK: - Setups
     
     private func setupView() {
-        view.backgroundColor = .gray
         title = "Search for a Best friend!"
     }
     
@@ -160,8 +160,18 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell
-        return item ?? UICollectionViewCell()
+        
+        switch indexPath.section {
+        case 0:
+            let item = collectionView.dequeueReusableCell(withReuseIdentifier: TextFieldCell.identifier, for: indexPath) as? TextFieldCell
+            return item ?? UICollectionViewCell()
+        case 1:
+            let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsGroupsCell.identifier, for: indexPath) as? PetsGroupsCell
+            return item ?? UICollectionViewCell()
+        default:
+            let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsProfileCell.identifier, for: indexPath) as? PetsProfileCell
+            return item ?? UICollectionViewCell()
+        }
     }
 }
 
