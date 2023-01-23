@@ -1,5 +1,5 @@
 //
-//  CellCollectionViewCell.swift
+//  PetsProfile.swift
 //  Home Work 16 (MVVM)
 //
 //  Created by Daniil Davidovich on 23.01.23.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class PetsProfile: UICollectionViewCell {
     
-    static var identifier = "CollectionView"
+    static var identifier = "PetsProfileCell"
     
     // MARK: - Initializers
     
@@ -22,6 +22,4 @@ class CollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("Error in Cell")
     }
-    
-    
 }
