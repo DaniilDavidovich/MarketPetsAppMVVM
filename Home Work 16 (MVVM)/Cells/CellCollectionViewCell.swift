@@ -7,6 +7,19 @@
 
 import UIKit
 
-class CellCollectionViewCell: UICollectionViewCell {
+class CollectionViewCell: UICollectionViewCell {
     
+    static var identifier = "CollectionView"
+    
+    // MARK: - Initializers
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .gray
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Error in Cell")
+    }
 }

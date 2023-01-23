@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         
         collection.translatesAutoresizingMaskIntoConstraints = false
         // MARK: Cells
-//        collection.register(<#T##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        collection.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         
         
         collection.dataSource = self
@@ -208,7 +208,7 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbumViewCell.identifier, for: indexPath) as? MyAlbumViewCell
+        let item = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell
         return item ?? UICollectionViewCell()
     }
 }
