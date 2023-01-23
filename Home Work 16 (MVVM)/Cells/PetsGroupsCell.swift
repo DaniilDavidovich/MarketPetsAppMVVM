@@ -75,7 +75,7 @@ class PetsGroupsCell: UICollectionViewCell {
             imageView.centerXAnchor.constraint(equalTo: viewContainer.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: viewContainer.centerYAnchor),
             
-            title.topAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: 40),
+            title.topAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: 20),
             title.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
         
         ])

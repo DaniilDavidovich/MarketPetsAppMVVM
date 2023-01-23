@@ -103,7 +103,7 @@ class ViewController: UIViewController {
                 
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 4),
-                                                       heightDimension: .fractionalWidth(1 / 1 * 0.4))
+                                                       heightDimension: .fractionalWidth(0.32))
                 
                 let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: layoutItem, count: 1)
                 layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
