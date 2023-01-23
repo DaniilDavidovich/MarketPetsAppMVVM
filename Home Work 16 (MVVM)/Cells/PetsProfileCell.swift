@@ -26,7 +26,9 @@ class PetsProfileCell: UICollectionViewCell {
         let imageview = UIImageView()
         let image = UIImage(named: "dogImage")
         imageview.image = image
-        imageview.contentMode = .scaleAspectFit
+        imageview.contentMode = .scaleAspectFill
+        imageview.clipsToBounds = true
+        imageview.layer.cornerRadius = 45
         imageview.translatesAutoresizingMaskIntoConstraints = false
         return imageview
     }()
@@ -55,6 +57,7 @@ class PetsProfileCell: UICollectionViewCell {
         label.text = "Lorem ipsum dolor sit amet, "
         label.textColor = .systemGray2
         label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 1
         return label
     }()
     

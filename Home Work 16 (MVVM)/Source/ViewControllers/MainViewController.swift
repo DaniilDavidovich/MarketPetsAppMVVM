@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     //MARK: - Outlets
     
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
 
 //MARK: - Extension
 
-extension ViewController: UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -161,10 +161,19 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-extension ViewController: UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextFieldCell.identifier, for: indexPath) as? TextFieldCell
         cell?.textField.becomeFirstResponder()
+        
+        switch indexPath.section {
+        case 2:
+            let datailVC = DetailViewController()
+            navigationController?.pushViewController(datailVC, animated: true)
+        default:
+            break
+        }
+        
 
     }
 }
