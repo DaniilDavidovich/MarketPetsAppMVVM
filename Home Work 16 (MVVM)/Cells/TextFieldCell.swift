@@ -11,7 +11,7 @@ class TextFieldCell: UICollectionViewCell {
     
     static var identifier = "TextFieldCell"
     
-    private lazy var textField: UITextField = {
+    lazy var textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.attributedPlaceholder = NSAttributedString(string: "Type something", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -20,6 +20,8 @@ class TextFieldCell: UICollectionViewCell {
         textField.backgroundColor = .white
         textField.textAlignment = .left
         textField.layer.cornerRadius = 25
+        textField.isUserInteractionEnabled = false
+        textField.tintColor = .gray
         return textField
     }()
     
@@ -27,8 +29,6 @@ class TextFieldCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .gray
-        setupView()
         setupHierarhy()
         setupLayout()
     }
@@ -38,9 +38,6 @@ class TextFieldCell: UICollectionViewCell {
     }
     
     //MARK: - Setups
-    private func setupView() {
-        backgroundColor = .systemBlue
-    }
     
     private func setupHierarhy() {
         addSubview(textField)
@@ -50,11 +47,30 @@ class TextFieldCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             textField.topAnchor.constraint(equalTo: contentView.topAnchor),
-            textField.heightAnchor.constraint(equalToConstant: 60),
+            textField.heightAnchor.constraint(equalToConstant: 50),
             textField.widthAnchor.constraint(equalToConstant: 363)
-            
         ])
     }
+    
+//    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+//
+//        guard isUserInteractionEnabled else { return nil }
+//
+//        guard !isHidden else { return nil }
+//
+//        guard alpha >= 0.01 else { return nil }
+//
+//        guard self.point(inside: point, with: event) else { return nil }
+//
+//
+//        // add one of these blocks for each button in our collection view cell we want to actually work
+//        if self.textField.point(inside: convert(point, to: textField), with: event) {
+//            return self.textField
+//        }
+//
+//        return super.hitTest(point, with: event)
+//    }
+
     
 }
 

@@ -29,7 +29,7 @@ class PetsGroupsCell: UICollectionViewCell {
         return imageview
     }()
     
-    private lazy var title: UILabel = {
+    private lazy var titleLable: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "All"
@@ -42,7 +42,6 @@ class PetsGroupsCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
         setupHierarhy()
         setupLayout()
         
@@ -53,14 +52,11 @@ class PetsGroupsCell: UICollectionViewCell {
     }
     
     //MARK: - Setups
-    private func setupView() {
-        backgroundColor = .systemBlue
-    }
     
     private func setupHierarhy() {
         addSubview(viewContainer)
         viewContainer.addSubview(imageView)
-        addSubview(title)
+        addSubview(titleLable)
        
     }
     
@@ -75,8 +71,8 @@ class PetsGroupsCell: UICollectionViewCell {
             imageView.centerXAnchor.constraint(equalTo: viewContainer.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: viewContainer.centerYAnchor),
             
-            title.topAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: 20),
-            title.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            titleLable.topAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: 20),
+            titleLable.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
         
         ])
     }
