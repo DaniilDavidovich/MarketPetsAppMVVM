@@ -57,6 +57,7 @@ class PetsProfileCell: UICollectionViewCell {
         label.text = "Lorem ipsum dolor sit amet, "
         label.textColor = .systemGray2
         label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 1
         return label
     }()
     
