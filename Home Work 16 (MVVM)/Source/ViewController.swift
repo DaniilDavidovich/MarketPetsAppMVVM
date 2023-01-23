@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         collection.translatesAutoresizingMaskIntoConstraints = false
         // MARK: Cells
         collection.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
+        collection.register(PetsProfile.self, forCellWithReuseIdentifier: PetsProfile.identifier)
         
         
         collection.dataSource = self
@@ -138,6 +139,10 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         5
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
