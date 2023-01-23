@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Type something"
+//        textField.placeholder = "Type something"
         textField.font = .systemFont(ofSize: 12)
         
         return textField
@@ -48,7 +48,6 @@ class ViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .gray
         title = "Search for a Best friend!"
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupHierarhy() {
@@ -81,7 +80,27 @@ class ViewController: UIViewController {
                                                       heightDimension: .fractionalHeight(1))
                 
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0)
+
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 1),
+                                                       heightDimension: .fractionalWidth(0.15))
+                
+                let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: layoutItem, count: 1)
+                layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)
+                
+                let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 50, trailing: 0)
+                layoutSection.orthogonalScrollingBehavior = .groupPaging
+                
+                
+                return layoutSection
+                
+            case 1:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                      heightDimension: .fractionalHeight(1))
+                
+                let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+                
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1 / 4),
                                                        heightDimension: .fractionalWidth(1 / 1 * 0.4))
@@ -90,25 +109,11 @@ class ViewController: UIViewController {
                 layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
                 
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 30, trailing: 0)
+                
+                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 50, trailing: 15)
+                
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 
-                let layoutSectionHeaderSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .estimated(86)
-                )
-                
-                let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: layoutSectionHeaderSize,
-                    elementKind: UICollectionView.elementKindSectionHeader,
-                    alignment: .top
-                )
-                
-                layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                                      leading: 0,
-                                                                      bottom: 0,
-                                                                      trailing: 0)
                 return layoutSection
                 
             default:
@@ -116,32 +121,19 @@ class ViewController: UIViewController {
                                                       heightDimension: .fractionalHeight(1))
                 
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 20, trailing: 0)
+                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 20, trailing: 0)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.97),
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                        heightDimension: .absolute(154))
                 
                 let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
                 
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 30, trailing: 10)
-                
-                let layoutSectionHeaderSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .estimated(80)
-                )
-                
-                let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: layoutSectionHeaderSize,
-                    elementKind: UICollectionView.elementKindSectionHeader,
-                    alignment: .top
-                )
-                
-                layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
+           
                 layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0,
                                                                       leading: 0,
                                                                       bottom: 20,
-                                                                      trailing: 0)
+                                                                      trailing: 15)
                 return layoutSection
             }
         }
@@ -153,11 +145,18 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 5
+        default:
+            return 3
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
