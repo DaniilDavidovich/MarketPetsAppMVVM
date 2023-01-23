@@ -26,15 +26,6 @@ class ViewController: UIViewController {
         return collection
     }()
     
-    private lazy var textField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-//        textField.placeholder = "Type something"
-        textField.font = .systemFont(ofSize: 12)
-        
-        return textField
-    }()
-    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -52,7 +43,6 @@ class ViewController: UIViewController {
     
     private func setupHierarhy() {
         view.addSubview(collectionView)
-        view.addSubview(textField)
     }
     
     private func setupLayout() {
@@ -61,11 +51,7 @@ class ViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            textField.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
-            
+                        
         ])
     }
 
