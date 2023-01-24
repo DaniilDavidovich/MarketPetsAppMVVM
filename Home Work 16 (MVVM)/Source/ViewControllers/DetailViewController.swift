@@ -30,6 +30,7 @@ class DetailViewController: UIViewController {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 50
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -150,7 +151,7 @@ class DetailViewController: UIViewController {
     private lazy var iconStars: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        imageView.image = UIImage(named: "stars")
         return imageView
     }()
     
@@ -160,16 +161,6 @@ class DetailViewController: UIViewController {
         
         return view
     }()
-    
-//    private lazy var buttonLike: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.backgroundColor = .systemGray2
-//        button.m
-//
-//        return button
-//    }()
-   
     
     //MARK: - Lifecycle
 
@@ -188,8 +179,7 @@ class DetailViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .done, target: self, action: #selector(addToFavorite))
         navigationItem.rightBarButtonItem?.tintColor = .white
-        
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonForNavigation)
+
     }
     
     private func setupHierarhy() {
