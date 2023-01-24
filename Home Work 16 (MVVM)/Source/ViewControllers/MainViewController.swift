@@ -8,6 +8,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    let model = ModelData()
 
     //MARK: - Outlets
     
@@ -43,6 +45,21 @@ class MainViewController: UIViewController {
     
     private func setupHierarhy() {
         view.addSubview(collectionView)
+        
+        let barButtonMenu = UIMenu(title: "", children: [
+            UIAction(title: NSLocalizedString("Dog", comment: ""), image: UIImage(named: "dogIcon"), handler: { [self] make in
+                let cell = Model(image: "fishImage", title: "Fish", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "10$", ageTitle: 3, sexTitle: "Male", colorTitle: "black")
+                model.modelsData[2].append(cell)
+                collectionView.reloadData()
+                print(model.modelsData.count)
+            }),
+            UIAction(title: NSLocalizedString("Cat", comment: ""), image: UIImage(named: "catIcon"), handler: { _ in }),
+            UIAction(title: NSLocalizedString("Fish", comment: ""), image: UIImage(named: "fishIcon"), handler: { _ in }),
+            UIAction(title: NSLocalizedString("Bird", comment: ""), image: UIImage(named: "birdIcon"), handler: { _ in })
+        ])
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add", image: UIImage(systemName: "plus"), primaryAction: nil, menu: barButtonMenu)
+
+      
     }
     
     private func setupLayout() {
@@ -124,6 +141,7 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
 }
 
 
@@ -131,11 +149,12 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        Model.modelsData[section].count
+        
+        model.modelsData[section].count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        Model.modelsData.count
+        model.modelsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -146,11 +165,11 @@ extension MainViewController: UICollectionViewDataSource {
             return item ?? UICollectionViewCell()
         case 1:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsGroupsCell.identifier, for: indexPath) as? PetsGroupsCell
-            item?.configuration(model: Model.modelsData[indexPath.section][indexPath.row])
+            item?.configuration(model: model.modelsData[indexPath.section][indexPath.row])
             return item ?? UICollectionViewCell()
         default:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsProfileCell.identifier, for: indexPath) as? PetsProfileCell
-            item?.configuration(model: Model.modelsData[indexPath.section][indexPath.row])
+            item?.configuration(model: model.modelsData[indexPath.section][indexPath.row])
             return item ?? UICollectionViewCell()
         }
     }
@@ -164,7 +183,7 @@ extension MainViewController: UICollectionViewDelegate {
         switch indexPath.section {
         case 2:
             let datailVC = DetailViewController()
-            datailVC.cell = Model.modelsData[indexPath.section][indexPath.row]
+            datailVC.cell = model.modelsData[indexPath.section][indexPath.row]
             navigationController?.pushViewController(datailVC, animated: true)
           
         default:

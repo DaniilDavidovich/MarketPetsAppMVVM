@@ -18,8 +18,8 @@ struct Model: Hashable {
     var colorTitle: String?
 }
 
-extension Model {
-    static let modelsData = [
+class ModelData {
+     public var modelsData = [
         [Model(image: "magnifyingglass")],
         
         [Model(image: "houseIcon", title: "All"),
