@@ -23,10 +23,10 @@ extension Model {
         [Model(image: "magnifyingglass")],
         
         [Model(image: "houseIcon", title: "All"),
-         Model(image: "dogIcon", title: "Cats"),
-         Model(image: "catIcon", title: "Fishes"),
-         Model(image: "fishIcon", title: "Pigs"),
-         Model(image: "catIcon", title: "Elephants")],
+         Model(image: "dogIcon", title: "Dogs"),
+         Model(image: "catIcon", title: "Cats"),
+         Model(image: "fishIcon", title: "Fishes"),
+         Model(image: "birdIcon", title: "Birds")],
         
         
         [Model(image: "dogImage", title: "Dog", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "100$", ageTitle: 2, sexTitle: "Male", colorTitle: "black"),
