@@ -9,12 +9,24 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var cell: Model? {
+        didSet {
+            titleLabel.text = cell?.title
+            descriptionLabel.text = cell?.descriptionTitle
+            labelPriceData.text = cell?.priceLabel
+            if let valueAge = cell?.ageTitle {
+                labelAgeData.text = String(valueAge)
+            }
+            imageView.image = UIImage(named: cell?.image ?? "")
+            labelSexData.text = cell?.sexTitle
+            labelColorData.text = cell?.colorTitle
+        }
+    }
+    
     //MARK: - Outlets
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "dogImage")
-        imageView.image = image
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 50
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +45,6 @@ class DetailViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "French Bull Dog"
         label.textColor = .black
         label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
@@ -44,7 +55,6 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16)
         label.textColor = .systemGray2
-        label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper"
         label.numberOfLines = 3
         return label
     }()
@@ -78,7 +88,6 @@ class DetailViewController: UIViewController {
         label.text = "Color"
         label.textAlignment = .center
     
-        
         return label
     }()
     
@@ -95,7 +104,6 @@ class DetailViewController: UIViewController {
     
     private lazy var labelPriceData: UILabel = {
         let label = UILabel()
-        label.text = "100$"
         label.textAlignment = .center
         label.backgroundColor = .white
         label.layer.masksToBounds = true
@@ -108,7 +116,6 @@ class DetailViewController: UIViewController {
     
     private lazy var labelAgeData: UILabel = {
         let label = UILabel()
-        label.text = "2"
         label.textAlignment = .center
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +127,6 @@ class DetailViewController: UIViewController {
     
     private lazy var labelSexData: UILabel = {
         let label = UILabel()
-        label.text = "Male"
         label.textAlignment = .center
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +138,6 @@ class DetailViewController: UIViewController {
     
     private lazy var labelColorData: UILabel = {
         let label = UILabel()
-        label.text = "Black"
         label.textAlignment = .center
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -144,12 +149,26 @@ class DetailViewController: UIViewController {
     
     private lazy var iconStars: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "stars")
-        imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
     }()
+    
+    private lazy var buttonForNavigation: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+//    private lazy var buttonLike: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.backgroundColor = .systemGray2
+//        button.m
+//
+//        return button
+//    }()
    
     
     //MARK: - Lifecycle
@@ -170,6 +189,7 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .done, target: self, action: #selector(addToFavorite))
         navigationItem.rightBarButtonItem?.tintColor = .white
         
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonForNavigation)
     }
     
     private func setupHierarhy() {
@@ -251,6 +271,12 @@ class DetailViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem?.tintColor = .white
         }
+        
+    }
+    
+    func configuration(model: Model) {
+        self.titleLabel.text = model.title
+        self.descriptionLabel.text = model.descriptionTitle
         
     }
 }

@@ -23,8 +23,6 @@ class PetsGroupsCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let imageview = UIImageView()
-        let image = UIImage(named: "catIcon")
-        imageview.image = image
         imageview.translatesAutoresizingMaskIntoConstraints = false
         return imageview
     }()
@@ -32,7 +30,6 @@ class PetsGroupsCell: UICollectionViewCell {
     private lazy var titleLable: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "All"
         label.textColor = .black
         return label
     }()
@@ -77,4 +74,14 @@ class PetsGroupsCell: UICollectionViewCell {
         ])
     }
     
+    func configuration(model: Model) {
+        self.titleLable.text = model.title
+        self.imageView.image = UIImage(named: model.image ?? "")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.titleLable.text = nil
+        self.imageView.image = nil
+    }
 }

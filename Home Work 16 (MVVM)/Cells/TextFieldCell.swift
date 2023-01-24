@@ -40,7 +40,7 @@ class TextFieldCell: UICollectionViewCell {
     //MARK: - Setups
     
     private func setupHierarhy() {
-        addSubview(textField)
+        contentView.addSubview(textField)
     }
     
     private func setupLayout() {
@@ -48,30 +48,9 @@ class TextFieldCell: UICollectionViewCell {
             textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             textField.topAnchor.constraint(equalTo: contentView.topAnchor),
             textField.heightAnchor.constraint(equalToConstant: 50),
-            textField.widthAnchor.constraint(equalToConstant: 363)
+            textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
-    
-//    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-//
-//        guard isUserInteractionEnabled else { return nil }
-//
-//        guard !isHidden else { return nil }
-//
-//        guard alpha >= 0.01 else { return nil }
-//
-//        guard self.point(inside: point, with: event) else { return nil }
-//
-//
-//        // add one of these blocks for each button in our collection view cell we want to actually work
-//        if self.textField.point(inside: convert(point, to: textField), with: event) {
-//            return self.textField
-//        }
-//
-//        return super.hitTest(point, with: event)
-//    }
-
-    
 }
 
 

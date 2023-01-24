@@ -16,6 +16,7 @@
 		A58AD317297E7A1B00BBAFDD /* PetsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AD316297E7A1B00BBAFDD /* PetsProfileCell.swift */; };
 		A58AD319297E8DB900BBAFDD /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AD318297E8DB900BBAFDD /* TextFieldCell.swift */; };
 		A58AD31B297EBE6A00BBAFDD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AD31A297EBE6A00BBAFDD /* DetailViewController.swift */; };
+		A5A633DB297FD3BF000729BD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A633DA297FD3BF000729BD /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A58AD316297E7A1B00BBAFDD /* PetsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsProfileCell.swift; sourceTree = "<group>"; };
 		A58AD318297E8DB900BBAFDD /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		A58AD31A297EBE6A00BBAFDD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A5A633DA297FD3BF000729BD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		A58AD30F297E678900BBAFDD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A5A633DC297FD47A000729BD /* Models */,
 				A58AD313297E758500BBAFDD /* ViewControllers */,
 				A58AD311297E67A800BBAFDD /* App */,
 			);
@@ -100,9 +103,9 @@
 		A58AD312297E757A00BBAFDD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A58AD318297E8DB900BBAFDD /* TextFieldCell.swift */,
 				A58AD314297E761300BBAFDD /* PetsGroupsCell.swift */,
 				A58AD316297E7A1B00BBAFDD /* PetsProfileCell.swift */,
-				A58AD318297E8DB900BBAFDD /* TextFieldCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -114,6 +117,14 @@
 				A58AD31A297EBE6A00BBAFDD /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A5A633DC297FD47A000729BD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A5A633DA297FD3BF000729BD /* Model.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +204,7 @@
 				A58AD2FE297E673100BBAFDD /* SceneDelegate.swift in Sources */,
 				A58AD319297E8DB900BBAFDD /* TextFieldCell.swift in Sources */,
 				A58AD31B297EBE6A00BBAFDD /* DetailViewController.swift in Sources */,
+				A5A633DB297FD3BF000729BD /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,8 +24,6 @@ class PetsProfileCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let imageview = UIImageView()
-        let image = UIImage(named: "dogImage")
-        imageview.image = image
         imageview.contentMode = .scaleAspectFill
         imageview.clipsToBounds = true
         imageview.layer.cornerRadius = 45
@@ -36,7 +34,6 @@ class PetsProfileCell: UICollectionViewCell {
     private lazy var title: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "All"
         label.textColor = .black
         label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
@@ -54,17 +51,15 @@ class PetsProfileCell: UICollectionViewCell {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Lorem ipsum dolor sit amet, "
         label.textColor = .systemGray2
         label.font = .systemFont(ofSize: 14)
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         return label
     }()
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "1$"
         label.textColor = .black
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
@@ -99,8 +94,6 @@ class PetsProfileCell: UICollectionViewCell {
     
     private lazy var iconReting: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "stars")
-        imageView.image = image
         imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -124,7 +117,7 @@ class PetsProfileCell: UICollectionViewCell {
     //MARK: - Setups
     
     private func setupHierarhy() {
-        addSubview(viewContainer)
+        contentView.addSubview(viewContainer)
         viewContainer.addSubview(imageView)
         viewContainer.addSubview(buttonLike)
         viewContainer.addSubview(title)
@@ -142,7 +135,7 @@ class PetsProfileCell: UICollectionViewCell {
             viewContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             viewContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             viewContainer.heightAnchor.constraint(equalToConstant: 142),
-            viewContainer.widthAnchor.constraint(equalToConstant: 363),
+            viewContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             imageView.leadingAnchor.constraint(equalTo: viewContainer.leadingAnchor),
             imageView.topAnchor.constraint(equalTo: viewContainer.topAnchor),
@@ -159,6 +152,7 @@ class PetsProfileCell: UICollectionViewCell {
             
             descriptionLabel.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+            descriptionLabel.trailingAnchor.constraint(equalTo: viewContainer.trailingAnchor, constant: -20),
             
             priceLabel.bottomAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: -10),
             priceLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
@@ -212,6 +206,23 @@ class PetsProfileCell: UICollectionViewCell {
         }
 
         return super.hitTest(point, with: event)
+    }
+    
+    // MARK: - Configuration
+    
+    func configuration(model: Model) {
+        self.title.text = model.title
+        self.descriptionLabel.text = model.descriptionTitle
+        self.imageView.image = UIImage(named: model.image ?? "")
+        self.priceLabel.text = model.priceLabel
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.title.text = nil
+        self.descriptionLabel.text = nil
+        self.imageView.image = nil
+        self.priceLabel.text = nil
     }
     
 }

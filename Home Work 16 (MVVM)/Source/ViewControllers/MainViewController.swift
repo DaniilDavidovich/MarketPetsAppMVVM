@@ -107,19 +107,19 @@ class MainViewController: UIViewController {
                                                       heightDimension: .fractionalHeight(1))
                 
                 let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 20, trailing: 0)
+                layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 20, trailing: 15)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                        heightDimension: .absolute(177))
                 
-                let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
+                let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [layoutItem])
                 
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
            
                 layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0,
                                                                       leading: 0,
                                                                       bottom: 20,
-                                                                      trailing: 15)
+                                                                      trailing: 0)
                 return layoutSection
             }
         }
@@ -131,18 +131,11 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 5
-        default:
-            return 3
-        }
+        Model.modelsData[section].count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        3
+        Model.modelsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -153,9 +146,11 @@ extension MainViewController: UICollectionViewDataSource {
             return item ?? UICollectionViewCell()
         case 1:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsGroupsCell.identifier, for: indexPath) as? PetsGroupsCell
+            item?.configuration(model: Model.modelsData[indexPath.section][indexPath.row])
             return item ?? UICollectionViewCell()
         default:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsProfileCell.identifier, for: indexPath) as? PetsProfileCell
+            item?.configuration(model: Model.modelsData[indexPath.section][indexPath.row])
             return item ?? UICollectionViewCell()
         }
     }
@@ -169,7 +164,9 @@ extension MainViewController: UICollectionViewDelegate {
         switch indexPath.section {
         case 2:
             let datailVC = DetailViewController()
+            datailVC.cell = Model.modelsData[indexPath.section][indexPath.row]
             navigationController?.pushViewController(datailVC, animated: true)
+          
         default:
             break
         }
