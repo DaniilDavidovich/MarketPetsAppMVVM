@@ -96,6 +96,7 @@ class PetsProfileCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "stars")
         
         return imageView
     }()
@@ -171,9 +172,9 @@ class PetsProfileCell: UICollectionViewCell {
             iconHeart.widthAnchor.constraint(equalToConstant: 30),
             
             iconReting.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            iconReting.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
-            iconReting.heightAnchor.constraint(equalToConstant: 20),
-            iconReting.widthAnchor.constraint(equalToConstant: 80)
+            iconReting.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+            iconReting.heightAnchor.constraint(equalToConstant: 12),
+            iconReting.widthAnchor.constraint(equalToConstant: 48)
         
         ])
     }

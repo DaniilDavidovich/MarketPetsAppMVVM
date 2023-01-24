@@ -47,15 +47,26 @@ class MainViewController: UIViewController {
         view.addSubview(collectionView)
         
         let barButtonMenu = UIMenu(title: "", children: [
-            UIAction(title: NSLocalizedString("Dog", comment: ""), image: UIImage(named: "dogIcon"), handler: { [self] make in
-                let cell = Model(image: "fishImage", title: "Fish", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "10$", ageTitle: 3, sexTitle: "Male", colorTitle: "black")
-                model.modelsData[2].append(cell)
-                collectionView.reloadData()
-                print(model.modelsData.count)
+            UIAction(title: NSLocalizedString("Dog", comment: ""), image: UIImage(named: "dogIcon"), handler: { [weak self] make in
+                let cell = Model(image: "dogImage", title: "Dog", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "100$", ageTitle: 2, sexTitle: "Male", colorTitle: "black")
+                self?.model.modelsData[2].append(cell)
+                self?.collectionView.reloadData()
             }),
-            UIAction(title: NSLocalizedString("Cat", comment: ""), image: UIImage(named: "catIcon"), handler: { _ in }),
-            UIAction(title: NSLocalizedString("Fish", comment: ""), image: UIImage(named: "fishIcon"), handler: { _ in }),
-            UIAction(title: NSLocalizedString("Bird", comment: ""), image: UIImage(named: "birdIcon"), handler: { _ in })
+            UIAction(title: NSLocalizedString("Cat", comment: ""), image: UIImage(named: "catIcon"), handler: { [weak self]  make in
+                    let cell = Model(image: "catImage", title: "Cat", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "33$", ageTitle: 1, sexTitle: "Male", colorTitle: "Black")
+                self?.model.modelsData[2].append(cell)
+                self?.collectionView.reloadData()
+            }),
+            UIAction(title: NSLocalizedString("Fish", comment: ""), image: UIImage(named: "fishIcon"), handler:{
+                [weak self]  make in
+                       let cell = Model(image: "fishImage", title: "Fish", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "10$", ageTitle: 3, sexTitle: "Male", colorTitle: "black")
+                   self?.model.modelsData[2].append(cell)
+                   self?.collectionView.reloadData()
+            }),
+            UIAction(title: NSLocalizedString("Bird", comment: ""), image: UIImage(named: "birdIcon"), handler:{ [weak self]  make in
+                let cell = Model(image: "birdImage", title: "Bird", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "12$", ageTitle: 1, sexTitle: "Male", colorTitle: "Multy")
+            self?.model.modelsData[2].append(cell)
+            self?.collectionView.reloadData() })
         ])
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add", image: UIImage(systemName: "plus"), primaryAction: nil, menu: barButtonMenu)
 
