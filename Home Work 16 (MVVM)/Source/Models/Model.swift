@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Model: Hashable {
     var image: String?
     var title: String?

@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let model = ModelData()
+    let viewModel = ViewModel()
 
     //MARK: - Outlets
     
@@ -35,6 +35,16 @@ class MainViewController: UIViewController {
         setupView()
         setupHierarhy()
         setupLayout()
+        observer()
+    }
+    
+    //MARK: - Observer
+    private func observer() {
+        viewModel.model.bind { data in
+
+            self.collectionView.reloadData()
+            print("Коллекция обновилась")
+        }
     }
     
     //MARK: - Setups
@@ -49,24 +59,23 @@ class MainViewController: UIViewController {
         let barButtonMenu = UIMenu(title: "", children: [
             UIAction(title: NSLocalizedString("Dog", comment: ""), image: UIImage(named: "dogIcon"), handler: { [weak self] make in
                 let cell = Model(image: "dogImage", title: "Dog", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "100$", ageTitle: 2, sexTitle: "Male", colorTitle: "black")
-                self?.model.modelsData[2].append(cell)
-                self?.collectionView.reloadData()
+                self?.viewModel.model.value[2].append(cell)
             }),
             UIAction(title: NSLocalizedString("Cat", comment: ""), image: UIImage(named: "catIcon"), handler: { [weak self]  make in
                     let cell = Model(image: "catImage", title: "Cat", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "33$", ageTitle: 1, sexTitle: "Male", colorTitle: "Black")
-                self?.model.modelsData[2].append(cell)
-                self?.collectionView.reloadData()
+                self?.viewModel.model.value[2].append(cell)
+               
             }),
             UIAction(title: NSLocalizedString("Fish", comment: ""), image: UIImage(named: "fishIcon"), handler:{
                 [weak self]  make in
                        let cell = Model(image: "fishImage", title: "Fish", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "10$", ageTitle: 3, sexTitle: "Male", colorTitle: "black")
-                   self?.model.modelsData[2].append(cell)
-                   self?.collectionView.reloadData()
+                   self?.viewModel.model.value[2].append(cell)
+                   
             }),
             UIAction(title: NSLocalizedString("Bird", comment: ""), image: UIImage(named: "birdIcon"), handler:{ [weak self]  make in
                 let cell = Model(image: "birdImage", title: "Bird", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "12$", ageTitle: 1, sexTitle: "Male", colorTitle: "Multy")
-            self?.model.modelsData[2].append(cell)
-            self?.collectionView.reloadData() })
+            self?.viewModel.model.value[2].append(cell)
+            })
         ])
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add", image: UIImage(systemName: "plus"), primaryAction: nil, menu: barButtonMenu)
 
@@ -161,11 +170,11 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        model.modelsData[section].count
+        viewModel.model.value[section].count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        model.modelsData.count
+        viewModel.model.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -176,11 +185,11 @@ extension MainViewController: UICollectionViewDataSource {
             return item ?? UICollectionViewCell()
         case 1:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsGroupsCell.identifier, for: indexPath) as? PetsGroupsCell
-            item?.configuration(model: model.modelsData[indexPath.section][indexPath.row])
+            item?.configuration(model: viewModel.model.value[indexPath.section][indexPath.row])
             return item ?? UICollectionViewCell()
         default:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsProfileCell.identifier, for: indexPath) as? PetsProfileCell
-            item?.configuration(model: model.modelsData[indexPath.section][indexPath.row])
+            item?.configuration(model: viewModel.model.value[indexPath.section][indexPath.row])
             return item ?? UICollectionViewCell()
         }
     }
@@ -194,7 +203,7 @@ extension MainViewController: UICollectionViewDelegate {
         switch indexPath.section {
         case 2:
             let datailVC = DetailViewController()
-            datailVC.cell = model.modelsData[indexPath.section][indexPath.row]
+            datailVC.cell = viewModel.model.value[indexPath.section][indexPath.row]
             navigationController?.pushViewController(datailVC, animated: true)
           
         default:

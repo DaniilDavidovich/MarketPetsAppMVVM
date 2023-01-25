@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A545EB2229815828001E923E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A545EB2129815828001E923E /* ViewModel.swift */; };
+		A545EB2429815856001E923E /* Boxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A545EB2329815856001E923E /* Boxing.swift */; };
 		A58AD2FC297E673100BBAFDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AD2FB297E673100BBAFDD /* AppDelegate.swift */; };
 		A58AD2FE297E673100BBAFDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AD2FD297E673100BBAFDD /* SceneDelegate.swift */; };
 		A58AD300297E673100BBAFDD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AD2FF297E673100BBAFDD /* MainViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A545EB2129815828001E923E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		A545EB2329815856001E923E /* Boxing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boxing.swift; sourceTree = "<group>"; };
 		A58AD2F8297E673100BBAFDD /* Home Work 16 (MVVM).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home Work 16 (MVVM).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58AD2FB297E673100BBAFDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A58AD2FD297E673100BBAFDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				A5A633DA297FD3BF000729BD /* Model.swift */,
+				A545EB2129815828001E923E /* ViewModel.swift */,
+				A545EB2329815856001E923E /* Boxing.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,9 +204,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A58AD300297E673100BBAFDD /* MainViewController.swift in Sources */,
+				A545EB2229815828001E923E /* ViewModel.swift in Sources */,
 				A58AD2FC297E673100BBAFDD /* AppDelegate.swift in Sources */,
 				A58AD317297E7A1B00BBAFDD /* PetsProfileCell.swift in Sources */,
 				A58AD315297E761300BBAFDD /* PetsGroupsCell.swift in Sources */,
+				A545EB2429815856001E923E /* Boxing.swift in Sources */,
 				A58AD2FE297E673100BBAFDD /* SceneDelegate.swift in Sources */,
 				A58AD319297E8DB900BBAFDD /* TextFieldCell.swift in Sources */,
 				A58AD31B297EBE6A00BBAFDD /* DetailViewController.swift in Sources */,
