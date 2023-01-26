@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let model = ModelData()
+    let viewModel = ViewModel()
 
     //MARK: - Outlets
     
@@ -35,6 +35,7 @@ class MainViewController: UIViewController {
         setupView()
         setupHierarhy()
         setupLayout()
+        viewModel.delegate = self
     }
     
     //MARK: - Setups
@@ -45,32 +46,38 @@ class MainViewController: UIViewController {
     
     private func setupHierarhy() {
         view.addSubview(collectionView)
+        setupNavigationItem()
+    }
+    
+    private func setupNavigationItem() {
         
         let barButtonMenu = UIMenu(title: "", children: [
             UIAction(title: NSLocalizedString("Dog", comment: ""), image: UIImage(named: "dogIcon"), handler: { [weak self] make in
-                let cell = Model(image: "dogImage", title: "Dog", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "100$", ageTitle: 2, sexTitle: "Male", colorTitle: "black")
-                self?.model.modelsData[2].append(cell)
-                self?.collectionView.reloadData()
+                let cell = Model(image: "dogImage", title: "Dog", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "100$", ageTitle: 2, sexTitle: "Male", colorTitle: "Black")
+                
+                self?.addItemAndReloadCollection(item: cell)
             }),
+            
             UIAction(title: NSLocalizedString("Cat", comment: ""), image: UIImage(named: "catIcon"), handler: { [weak self]  make in
-                    let cell = Model(image: "catImage", title: "Cat", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "33$", ageTitle: 1, sexTitle: "Male", colorTitle: "Black")
-                self?.model.modelsData[2].append(cell)
-                self?.collectionView.reloadData()
+                    let cell = Model(image: "catImage", title: "Cat", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "33$", ageTitle: 1, sexTitle: "Male", colorTitle: "White")
+                
+                self?.addItemAndReloadCollection(item: cell)
             }),
+            
             UIAction(title: NSLocalizedString("Fish", comment: ""), image: UIImage(named: "fishIcon"), handler:{
                 [weak self]  make in
-                       let cell = Model(image: "fishImage", title: "Fish", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "10$", ageTitle: 3, sexTitle: "Male", colorTitle: "black")
-                   self?.model.modelsData[2].append(cell)
-                   self?.collectionView.reloadData()
+                       let cell = Model(image: "fishImage", title: "Fish", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "10$", ageTitle: 3, sexTitle: "Male", colorTitle: "Gold")
+                
+                self?.addItemAndReloadCollection(item: cell)
             }),
+            
             UIAction(title: NSLocalizedString("Bird", comment: ""), image: UIImage(named: "birdIcon"), handler:{ [weak self]  make in
                 let cell = Model(image: "birdImage", title: "Bird", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "12$", ageTitle: 1, sexTitle: "Male", colorTitle: "Multy")
-            self?.model.modelsData[2].append(cell)
-            self?.collectionView.reloadData() })
+                
+                self?.addItemAndReloadCollection(item: cell)
+            })
         ])
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add", image: UIImage(systemName: "plus"), primaryAction: nil, menu: barButtonMenu)
-
-      
     }
     
     private func setupLayout() {
@@ -79,7 +86,6 @@ class MainViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                        
         ])
     }
 
@@ -106,9 +112,7 @@ class MainViewController: UIViewController {
                 layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 0, bottom: 30, trailing: 0)
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 
-                
                 return layoutSection
-                
             case 1:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                       heightDimension: .fractionalHeight(1))
@@ -129,7 +133,6 @@ class MainViewController: UIViewController {
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 
                 return layoutSection
-                
             default:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                       heightDimension: .fractionalHeight(1))
@@ -152,7 +155,6 @@ class MainViewController: UIViewController {
             }
         }
     }
-    
 }
 
 
@@ -160,12 +162,11 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        model.modelsData[section].count
+        viewModel.data.modelsData[section].count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        model.modelsData.count
+        viewModel.data.modelsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -176,17 +177,18 @@ extension MainViewController: UICollectionViewDataSource {
             return item ?? UICollectionViewCell()
         case 1:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsGroupsCell.identifier, for: indexPath) as? PetsGroupsCell
-            item?.configuration(model: model.modelsData[indexPath.section][indexPath.row])
+            item?.configuration(model: viewModel.data.modelsData[indexPath.section][indexPath.row])
             return item ?? UICollectionViewCell()
         default:
             let item = collectionView.dequeueReusableCell(withReuseIdentifier: PetsProfileCell.identifier, for: indexPath) as? PetsProfileCell
-            item?.configuration(model: model.modelsData[indexPath.section][indexPath.row])
+            item?.configuration(model: viewModel.data.modelsData[indexPath.section][indexPath.row])
             return item ?? UICollectionViewCell()
         }
     }
 }
 
 extension MainViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextFieldCell.identifier, for: indexPath) as? TextFieldCell
         cell?.textField.becomeFirstResponder()
@@ -194,13 +196,18 @@ extension MainViewController: UICollectionViewDelegate {
         switch indexPath.section {
         case 2:
             let datailVC = DetailViewController()
-            datailVC.cell = model.modelsData[indexPath.section][indexPath.row]
+            datailVC.cell = viewModel.data.modelsData[indexPath.section][indexPath.row]
             navigationController?.pushViewController(datailVC, animated: true)
           
         default:
             break
         }
-        
+    }
+}
 
+extension MainViewController: ViewModelDelegate {
+    func addItemAndReloadCollection(item: Model) {
+        viewModel.data.modelsData[2].append(item)
+        collectionView.reloadData()
     }
 }

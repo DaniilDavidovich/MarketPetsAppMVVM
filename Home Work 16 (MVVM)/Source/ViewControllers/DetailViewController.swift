@@ -39,7 +39,6 @@ class DetailViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.layer.cornerRadius = 40
-        
         return view
     }()
     
@@ -64,7 +63,6 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Price"
         label.textAlignment = .center
-
         return label
     }()
     
@@ -72,7 +70,6 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Age"
         label.textAlignment = .center
-   
         return label
     }()
     
@@ -80,7 +77,6 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Sex"
         label.textAlignment = .center
-  
         return label
     }()
     
@@ -88,7 +84,6 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Color"
         label.textAlignment = .center
-    
         return label
     }()
     
@@ -111,7 +106,6 @@ class DetailViewController: UIViewController {
         label.layer.cornerRadius = 15
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         return label
     }()
     
@@ -158,7 +152,6 @@ class DetailViewController: UIViewController {
     private lazy var buttonForNavigation: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
         return view
     }()
     
@@ -174,12 +167,14 @@ class DetailViewController: UIViewController {
     //MARK: - Setups
     private func setupView() {
         view.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.9568627477, blue: 0.9568627477, alpha: 1)
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow"), style: .done, target: self, action: #selector(popView))
+        
         navigationItem.leftBarButtonItem?.tintColor = .white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .done, target: self, action: #selector(addToFavorite))
+        
         navigationItem.rightBarButtonItem?.tintColor = .white
-
     }
     
     private func setupHierarhy() {
@@ -201,6 +196,7 @@ class DetailViewController: UIViewController {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
+            
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -249,7 +245,6 @@ class DetailViewController: UIViewController {
         ])
     }
 
-    
     //MARK: - Actions
     @objc func popView() {
         navigationController?.popViewController(animated: true)
@@ -261,12 +256,10 @@ class DetailViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem?.tintColor = .white
         }
-        
     }
     
     func configuration(model: Model) {
         self.titleLabel.text = model.title
         self.descriptionLabel.text = model.descriptionTitle
-        
     }
 }

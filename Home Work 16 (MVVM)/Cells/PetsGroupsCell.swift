@@ -33,15 +33,13 @@ class PetsGroupsCell: UICollectionViewCell {
         label.textColor = .black
         return label
     }()
-    
-    
+
     // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupHierarhy()
         setupLayout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -70,7 +68,6 @@ class PetsGroupsCell: UICollectionViewCell {
             
             titleLable.topAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: 20),
             titleLable.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-        
         ])
     }
     

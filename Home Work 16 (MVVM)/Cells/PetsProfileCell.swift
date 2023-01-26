@@ -11,7 +11,6 @@ class PetsProfileCell: UICollectionViewCell {
     
     static var identifier = "PetsProfileCell"
     
-    
     //MARK: - Outlets
     
     private lazy var viewContainer: UIView = {
@@ -69,7 +68,6 @@ class PetsProfileCell: UICollectionViewCell {
         let imageView = UIImageView()
         let image = UIImage(named: "cart")
         imageView.image = image
-        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -88,7 +86,6 @@ class PetsProfileCell: UICollectionViewCell {
         imageView.image = image
         imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     
@@ -97,11 +94,8 @@ class PetsProfileCell: UICollectionViewCell {
         imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "stars")
-        
         return imageView
     }()
-    
-    
     
     // MARK: - Initializers
     
@@ -175,7 +169,6 @@ class PetsProfileCell: UICollectionViewCell {
             iconReting.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             iconReting.heightAnchor.constraint(equalToConstant: 12),
             iconReting.widthAnchor.constraint(equalToConstant: 48)
-        
         ])
     }
     
@@ -199,7 +192,6 @@ class PetsProfileCell: UICollectionViewCell {
         guard alpha >= 0.01 else { return nil }
 
         guard self.point(inside: point, with: event) else { return nil }
-
 
         // add one of these blocks for each button in our collection view cell we want to actually work
         if self.buttonLike.point(inside: convert(point, to: buttonLike), with: event) {
@@ -225,5 +217,4 @@ class PetsProfileCell: UICollectionViewCell {
         self.imageView.image = nil
         self.priceLabel.text = nil
     }
-    
 }
