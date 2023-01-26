@@ -57,7 +57,6 @@ class TextFieldCell: UICollectionViewCell {
 extension UITextField {
     
     func setLeftIcon(_ image: UIImage) {
-        
         let iconView = UIImageView(frame: CGRect(x: 25, y: 5, width: 30, height: 25))
         iconView.image = image
         let iconContainerView: UIView = UIView(frame: CGRect(x: 20, y: 0, width: 70, height: 30))

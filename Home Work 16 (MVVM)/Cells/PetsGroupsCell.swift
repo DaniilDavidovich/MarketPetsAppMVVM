@@ -41,7 +41,6 @@ class PetsGroupsCell: UICollectionViewCell {
         super.init(frame: frame)
         setupHierarhy()
         setupLayout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -54,7 +53,6 @@ class PetsGroupsCell: UICollectionViewCell {
         addSubview(viewContainer)
         viewContainer.addSubview(imageView)
         addSubview(titleLable)
-       
     }
     
     private func setupLayout() {
@@ -70,7 +68,6 @@ class PetsGroupsCell: UICollectionViewCell {
             
             titleLable.topAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: 20),
             titleLable.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-        
         ])
     }
     

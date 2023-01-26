@@ -49,6 +49,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A56C6CD62982D3E000903B44 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A545EB2129815828001E923E /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A56C6CD72982D3F400903B44 /* Boxing */ = {
+			isa = PBXGroup;
+			children = (
+				A545EB2329815856001E923E /* Boxing.swift */,
+			);
+			path = Boxing;
+			sourceTree = "<group>";
+		};
 		A58AD2EF297E673100BBAFDD = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +94,8 @@
 		A58AD30F297E678900BBAFDD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A56C6CD72982D3F400903B44 /* Boxing */,
+				A56C6CD62982D3E000903B44 /* ViewModel */,
 				A5A633DC297FD47A000729BD /* Models */,
 				A58AD313297E758500BBAFDD /* ViewControllers */,
 				A58AD311297E67A800BBAFDD /* App */,
@@ -127,8 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				A5A633DA297FD3BF000729BD /* Model.swift */,
-				A545EB2129815828001E923E /* ViewModel.swift */,
-				A545EB2329815856001E923E /* Boxing.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

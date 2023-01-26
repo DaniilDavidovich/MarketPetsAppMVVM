@@ -39,6 +39,7 @@ class MainViewController: UIViewController {
     }
     
     //MARK: - Observer
+    
     private func observer() {
         viewModel.model.bind { data in
 
@@ -55,40 +56,48 @@ class MainViewController: UIViewController {
     
     private func setupHierarhy() {
         view.addSubview(collectionView)
-        
+        setupNavigationItem()
+    }
+    
+    //MARK: - Setup NavigationItem
+    private func setupNavigationItem() {
         let barButtonMenu = UIMenu(title: "", children: [
+            
             UIAction(title: NSLocalizedString("Dog", comment: ""), image: UIImage(named: "dogIcon"), handler: { [weak self] make in
                 let cell = Model(image: "dogImage", title: "Dog", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "100$", ageTitle: 2, sexTitle: "Male", colorTitle: "black")
+                
                 self?.viewModel.model.value[2].append(cell)
             }),
+            
             UIAction(title: NSLocalizedString("Cat", comment: ""), image: UIImage(named: "catIcon"), handler: { [weak self]  make in
                     let cell = Model(image: "catImage", title: "Cat", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "33$", ageTitle: 1, sexTitle: "Male", colorTitle: "Black")
+                
                 self?.viewModel.model.value[2].append(cell)
-               
             }),
+            
             UIAction(title: NSLocalizedString("Fish", comment: ""), image: UIImage(named: "fishIcon"), handler:{
                 [weak self]  make in
                        let cell = Model(image: "fishImage", title: "Fish", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "10$", ageTitle: 3, sexTitle: "Male", colorTitle: "black")
+                
                    self?.viewModel.model.value[2].append(cell)
-                   
             }),
+            
             UIAction(title: NSLocalizedString("Bird", comment: ""), image: UIImage(named: "birdIcon"), handler:{ [weak self]  make in
                 let cell = Model(image: "birdImage", title: "Bird", descriptionTitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sapien imperdiet semper",priceLabel: "12$", ageTitle: 1, sexTitle: "Male", colorTitle: "Multy")
+                
             self?.viewModel.model.value[2].append(cell)
             })
         ])
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "add", image: UIImage(systemName: "plus"), primaryAction: nil, menu: barButtonMenu)
-
-      
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
+            
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                        
         ])
     }
 
@@ -114,7 +123,6 @@ class MainViewController: UIViewController {
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
                 layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 0, bottom: 30, trailing: 0)
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
-                
                 
                 return layoutSection
                 
@@ -161,7 +169,6 @@ class MainViewController: UIViewController {
             }
         }
     }
-    
 }
 
 
@@ -169,7 +176,6 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         viewModel.model.value[section].count
     }
     
@@ -197,6 +203,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextFieldCell.identifier, for: indexPath) as? TextFieldCell
         cell?.textField.becomeFirstResponder()
         
@@ -209,7 +216,5 @@ extension MainViewController: UICollectionViewDelegate {
         default:
             break
         }
-        
-
     }
 }
